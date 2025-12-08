@@ -150,3 +150,5 @@ export async function getProductById(req, res) {
     res.status(500).json({ message: "Error fetching product", error: error });
   }
 }
+
+export async function searchProducts(req, res) {}
