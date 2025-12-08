@@ -40,3 +40,5 @@ function start() {
 // සර්වර් එක 3000 දරණ port එකෙන් listen (සවන්) දීමට ආරම්භ කරයි.
 // සවන් දීම ආරම්භ වූ පසු 'start' function එක ක්‍රියාත්මක කරයි.
 app.listen(3000, start);
+
+function sample() {}
