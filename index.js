@@ -5,10 +5,13 @@ import mongoose from "mongoose";
 import userRouter from "./routers/userRouter.js";
 import productRouter from "./routers/productRouter.js";
 import authorizeUser from "./lib/jwtMiddleware.js";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // MongoDB Atlas හි දත්ත ගබඩාවට සම්බන්ධ වීමට අවශ්‍ය සම්පූර්ණ URI ලිපිනය නියත විචල්‍යයක් (constant) ලෙස ගබඩා කරයි.
-const mongoURI =
-  "mongodb+srv://MaleeshaShanari:24IT0528@cluster0.uiubltv.mongodb.net/?appName=Cluster0";
+const mongoURI = process.env.mongoURI;
 
 // Mongoose yoda gena database 1ta sambanda we.
 mongoose
@@ -24,13 +27,15 @@ mongoose
 
 const app = express();
 
+app.user(cors());
+
 app.use(express.json());
 
 app.use(authorizeUser);
 
-app.use("/users", userRouter);
+app.use("/api/users", userRouter);
 
-app.use("/products", productRouter);
+app.use("/api/products", productRouter);
 
 // සර්වර් එක සාර්ථකව ආරම්භ වූ පසු ක්‍රියාත්මක වන callback function එක.
 function start() {
